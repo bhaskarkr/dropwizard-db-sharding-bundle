@@ -32,7 +32,7 @@ import io.appform.dropwizard.actors.actor.ActorConfig;
 import io.appform.dropwizard.actors.base.utils.NamingUtils;
 import io.appform.dropwizard.actors.config.RMQConfig;
 import io.dropwizard.lifecycle.Managed;
-import io.dropwizard.setup.Environment;
+import io.dropwizard.core.setup.Environment;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.conn.ssl.TrustSelfSignedStrategy;

@@ -20,10 +20,10 @@ import com.google.common.base.Preconditions;
 import io.appform.dropwizard.actors.common.Constants;
 import io.appform.dropwizard.actors.config.RMQConfig;
 import io.appform.dropwizard.actors.connectivity.RMQConnection;
-import io.dropwizard.Configuration;
-import io.dropwizard.ConfiguredBundle;
-import io.dropwizard.setup.Bootstrap;
-import io.dropwizard.setup.Environment;
+import io.dropwizard.core.Configuration;
+import io.dropwizard.core.ConfiguredBundle;
+import io.dropwizard.core.setup.Bootstrap;
+import io.dropwizard.core.setup.Environment;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -52,7 +52,7 @@ public abstract class RabbitmqActorBundle<T extends Configuration> implements Co
         val ttlConfig = ttlConfig();
         Preconditions.checkNotNull(executorServiceProvider, "Null executor service provider provided");
         this.connectionRegistry = new ConnectionRegistry(environment, executorServiceProvider, rmqConfig,
-                ttlConfig == null ? TtlConfig.builder().build(): ttlConfig);
+                ttlConfig == null ? TtlConfig.builder().ttlEnabled(false).build() : ttlConfig);
         environment.lifecycle().manage(connectionRegistry);
     }
 
